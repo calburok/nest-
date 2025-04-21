@@ -34,18 +34,14 @@ export class UsersController {
   findKim(@Param('id', ParseIntPipe) id: number) {
     console.log(id, typeof id);
     return {
-      message: 'ParseIntPipe 예시',
       id: id,
-      type: typeof id,
     };
   }
 
   @Get('/lee')
   findLee(@Query('isHuman', ParseBoolPipe) isHuman: boolean) {
     return {
-      message: 'parseboolpipe 예시',
       isHuman: isHuman,
-      type: typeof isHuman,
     };
   }
 
@@ -54,9 +50,7 @@ export class UsersController {
     @Param('position', new ParseEnumPipe(Lolposition)) position: Lolposition,
   ) {
     return {
-      message: 'parseEnumpipe 예시',
       position: position,
-      type: typeof position,
     };
   }
 
@@ -66,7 +60,6 @@ export class UsersController {
     @Query('min', new DefaultValuePipe(100), ParseIntPipe) min: number,
   ) {
     return {
-      message: 'parseEnumpipe 예시',
       min,
       count,
     };
@@ -76,7 +69,6 @@ export class UsersController {
   @UsePipes(new ValidationPipe({ transform: true }))
   findJeon(@Body() dto: CreateUserDto) {
     return {
-      message: '성공',
       dto: dto,
     };
   }
@@ -86,7 +78,6 @@ export class UsersController {
   @UsePipes(EmailPipe)
   findBro(@Body() email: string) {
     return {
-      message: '성공',
       email: email,
     };
   }
@@ -94,7 +85,6 @@ export class UsersController {
   @UsePipes(SuimPipe)
   findSuim(@Body() bread: string, coffee: string) {
     return {
-      message: '성공',
       bread: bread,
       coffee: coffee,
     };
