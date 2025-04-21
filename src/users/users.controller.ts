@@ -11,6 +11,8 @@ import {
   DefaultValuePipe,
   ValidationPipe,
   UsePipes,
+  BadRequestException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -81,6 +83,7 @@ export class UsersController {
       email: email,
     };
   }
+
   @Post('/suim')
   @UsePipes(SuimPipe)
   findSuim(@Body() bread: string, coffee: string) {
@@ -88,5 +91,11 @@ export class UsersController {
       bread: bread,
       coffee: coffee,
     };
+  }
+
+  @Get('/jiheon')
+  findJiheon() {
+    throw new UnauthorizedException('입만 열면 그짓말이');
+    return { name: '지헌이형' };
   }
 }
